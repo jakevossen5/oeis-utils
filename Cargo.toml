@@ -1,0 +1,20 @@
+[package]
+name = "oeis-utils"
+version = "0.1.0"
+edition = "2018"
+authors = ["Jake Vossen <jake@vossen.dev>"]
+description = "Parse OIES database archives"
+readme = "README.md"
+homepage = "https://github.com/jakevossen5/oeis-utils"
+repository = "https://github.com/jakevossen5/oeis-utils"
+license = "MIT"
+license-file = "LICENSE"
+keywords = ["math", "oeis"]
+categories = ["api-bindings", "encoding", "mathematics", "parsing", "visualization"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+lazy_static = "1.4.0"
+num-bigint = "0.4.0"
+regex = "1.5.4"
