@@ -7,7 +7,7 @@ use std::io::BufReader;
 use std::str::FromStr;
 
 pub struct OEISDatabase {
-    series: Vec<Series>,
+    pub series: Vec<Series>,
 }
 
 enum ReadingError {
@@ -40,7 +40,7 @@ impl OEISDatabase {
     }
 }
 
-#[derive(Debug, Clone, Hash)]
+#[derive(Debug, Clone, Hash, PartialEq)]
 pub enum NumberValue {
     InRange(i128),
     OutOfRange(BigInt),
@@ -97,18 +97,21 @@ impl FromStr for Series {
 mod tests {
     use super::*;
     #[test]
-    fn A344199() {
+    fn a344199() {
         let text = "A344199 ,18,36,60,252,708,834,900,2178,7722,7980,";
         let s = Series::from_str(text).unwrap();
         assert_eq!(s.id(), 344199);
         assert_eq!(
             s.values(),
             vec![18, 36, 60, 252, 708, 834, 900, 2178, 7722, 7980]
+                .iter()
+                .map(|e| NumberValue::InRange(*e))
+                .collect::<Vec<NumberValue>>()
         );
     }
 
     #[test]
-    fn A000001() {
+    fn a000001() {
         let text = "A000001 ,0,1,1,1,2,1,2,1,5,2,2,1,5,1,2,1,14,1,5,1,5,2,2,1,15,2,2,5,4,1,4,1,51,1,2,1,14,1,2,2,14,1,6,1,4,2,2,1,52,2,5,1,5,1,15,2,13,2,2,1,13,1,2,4,267,1,4,1,5,1,4,1,50,1,2,3,4,1,6,1,52,15,2,1,15,1,2,1,12,1,10,1,4,2,";
         let s = Series::from_str(text).unwrap();
         assert_eq!(s.id(), 1);
@@ -120,6 +123,9 @@ mod tests {
                 1, 15, 2, 13, 2, 2, 1, 13, 1, 2, 4, 267, 1, 4, 1, 5, 1, 4, 1, 50, 1, 2, 3, 4, 1, 6,
                 1, 52, 15, 2, 1, 15, 1, 2, 1, 12, 1, 10, 1, 4, 2
             ]
+            .iter()
+            .map(|e| NumberValue::InRange(*e))
+            .collect::<Vec<NumberValue>>()
         );
     }
 }

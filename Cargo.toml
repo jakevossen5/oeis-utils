@@ -1,6 +1,6 @@
 [package]
 name = "oeis-utils"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2018"
 authors = ["Jake Vossen <jake@vossen.dev>"]
 description = "Parse OIES database archives"
@@ -16,5 +16,5 @@ categories = ["api-bindings", "encoding", "mathematics", "parsing", "visualizati
 
 [dependencies]
 lazy_static = "1.4.0"
-num-bigint = "0.4.0"
+num-bigint = "0.4.3"
 regex = "1.5.4"
