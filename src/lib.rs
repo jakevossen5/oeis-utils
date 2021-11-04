@@ -4,6 +4,7 @@ use regex::Regex;
 use std::fs::File;
 use std::io::BufRead;
 use std::io::BufReader;
+use std::path::PathBuf;
 use std::str::FromStr;
 
 pub struct OEISDatabase {
@@ -21,7 +22,7 @@ impl OEISDatabase {
         self.series.clone()
     }
 
-    pub fn from_path(path: &str) -> Result<Self, std::io::Error> {
+    pub fn from_path(path: &PathBuf) -> Result<Self, std::io::Error> {
         let f = File::open(path);
         match f {
             Ok(f) => {

@@ -1,6 +1,6 @@
 [package]
 name = "oeis-utils"
-version = "0.1.1"
+version = "0.2.1"
 edition = "2018"
 authors = ["Jake Vossen <jake@vossen.dev>"]
 description = "Parse OIES database archives"
@@ -8,7 +8,6 @@ readme = "README.md"
 homepage = "https://github.com/jakevossen5/oeis-utils"
 repository = "https://github.com/jakevossen5/oeis-utils"
 license = "MIT"
-license-file = "LICENSE"
 keywords = ["math", "oeis"]
 categories = ["api-bindings", "encoding", "mathematics", "parsing", "visualization"]
 
