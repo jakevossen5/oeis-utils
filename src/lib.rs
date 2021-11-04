@@ -58,14 +58,14 @@ impl Series {
     }
 }
 
+lazy_static! {
+    static ref RE: Regex = Regex::new(r#"A(?P<Id>\d{6}) (?P<vals>[,\-?\d*,]+),"#).unwrap();
+}
+
 impl FromStr for Series {
     type Err = ();
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        lazy_static! {
-            static ref RE: Regex = Regex::new(r#"A(?P<Id>\d{6}) (?P<vals>[,\-?\d*,]+),"#).unwrap();
-        }
-        // println!("trying to parse {}", s);
         let caps = RE.captures(s);
         match caps {
             Some(m) => Ok(Self {
