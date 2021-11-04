@@ -1,5 +1,5 @@
 use lazy_static::lazy_static;
-use num_bigint::{BigInt, Sign};
+use num_bigint::BigInt;
 use regex::Regex;
 use std::fs::File;
 use std::io::BufRead;
