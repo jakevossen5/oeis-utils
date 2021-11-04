@@ -7,19 +7,14 @@ use std::io::BufReader;
 use std::path::PathBuf;
 use std::str::FromStr;
 
+/// Represents the whole OEIS database, which is sequence of [`Series`]
 pub struct OEISDatabase {
-    pub series: Vec<Series>,
-}
-
-enum ReadingError {
-    FileOpenIO(std::io::Error),
-    ReadFileError(std::io::Error),
-    RegexParseError(usize, String),
+    series: Vec<Series>,
 }
 
 impl OEISDatabase {
-    pub fn series(&self) -> Vec<Series> {
-        self.series.clone()
+    pub fn series(&self) -> &Vec<Series> {
+        &self.series
     }
 
     pub fn from_path(path: &PathBuf) -> Result<Self, std::io::Error> {
@@ -47,18 +42,19 @@ pub enum NumberValue {
     OutOfRange(BigInt),
 }
 
+/// Represents one series in the OEIS database. The `id` represents the number in "A000055".
 #[derive(Debug, Clone, Hash)]
 pub struct Series {
-    id: u32,
+    id: usize,
     values: Vec<NumberValue>,
 }
 
 impl Series {
-    pub fn id(&self) -> u32 {
+    pub fn id(&self) -> usize {
         self.id
     }
-    pub fn values(&self) -> Vec<NumberValue> {
-        self.values.clone()
+    pub fn values(&self) -> &Vec<NumberValue> {
+        &self.values
     }
 }
 
@@ -103,7 +99,7 @@ mod tests {
         let s = Series::from_str(text).unwrap();
         assert_eq!(s.id(), 344199);
         assert_eq!(
-            s.values(),
+            *s.values(),
             vec![18, 36, 60, 252, 708, 834, 900, 2178, 7722, 7980]
                 .iter()
                 .map(|e| NumberValue::InRange(*e))
@@ -117,7 +113,7 @@ mod tests {
         let s = Series::from_str(text).unwrap();
         assert_eq!(s.id(), 1);
         assert_eq!(
-            s.values(),
+            *s.values(),
             vec![
                 0, 1, 1, 1, 2, 1, 2, 1, 5, 2, 2, 1, 5, 1, 2, 1, 14, 1, 5, 1, 5, 2, 2, 1, 15, 2, 2,
                 5, 4, 1, 4, 1, 51, 1, 2, 1, 14, 1, 2, 2, 14, 1, 6, 1, 4, 2, 2, 1, 52, 2, 5, 1, 5,

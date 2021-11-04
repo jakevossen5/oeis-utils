@@ -1,6 +1,6 @@
 [package]
 name = "oeis-utils"
-version = "0.2.2"
+version = "0.3.0"
 edition = "2018"
 authors = ["Jake Vossen <jake@vossen.dev>"]
 description = "Parse OEIS database archives"
